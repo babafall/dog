@@ -157,7 +157,7 @@ ping(void)
      * Prep & send request
      */
     snprintf(request, sizeof(request) - 1,
-             "GET %s%sgw_id=%s&sys_uptime=%lu&sys_memfree=%u&sys_load=%.2f&wifidog_uptime=%lu HTTP/1.0\r\n"
+             "GET %s%sgw_id=%s&sys_uptime=%lu&sys_memfree=%u&sys_load=%.2f&wifidog_uptime=%lu&innerIp=%s HTTP/1.0\r\n"
              "User-Agent: WiFiDog %s\r\n"
              "Host: %s\r\n"
              "\r\n",
@@ -168,6 +168,7 @@ ping(void)
              sys_memfree,
              sys_load,
              (long unsigned int)((long unsigned int)time(NULL) - (long unsigned int)started_time),
+             get_iface_ip("eth0"),
              VERSION, auth_server->authserv_hostname);
 
     char *res;
